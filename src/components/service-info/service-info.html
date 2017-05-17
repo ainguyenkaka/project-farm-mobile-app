@@ -1,0 +1,77 @@
+<!-- Generated template for the ServiceInfoComponent component -->
+<ion-list>
+
+  <ion-item-divider color="light">
+    <ion-icon name="filing" item-left></ion-icon>
+    Gói dịch vụ
+  </ion-item-divider>
+  <ion-grid radio-group [(ngModel)]="choice">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Cơ bản</ion-label>
+          <ion-radio value="basic"></ion-radio>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Nâng cao</ion-label>
+          <ion-radio value="advance"></ion-radio>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div [ngSwitch]="choice">
+    <ion-list *ngSwitchCase="'basic'" checked="true">
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'advance'">
+      <ion-item-divider color="light">
+        <ion-icon name="calendar" item-left></ion-icon>
+        Ngày giao hàng
+      </ion-item-divider>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Thứ hai</ion-label>
+              <ion-checkbox checked="true"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Thứ ba</ion-label>
+              <ion-checkbox></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Thứ tư</ion-label>
+              <ion-checkbox></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Thứ năm</ion-label>
+              <ion-checkbox></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Thứ sáu</ion-label>
+              <ion-checkbox></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Thứ bảy</ion-label>
+              <ion-checkbox></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item-divider color="light">
+        <ion-icon name="calendar" item-left></ion-icon>
+        Thanh toán trước {{beforeMonth == 0 ? 1 : beforeMonth}} tháng
+      </ion-item-divider>
+      <ion-item>
+        <ion-range min="0" max="12" step="3" snaps="true" [(ngModel)]="beforeMonth"></ion-range>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-list>

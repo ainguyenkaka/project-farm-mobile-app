@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+
 import { OrderPage } from '../pages/order/order';
 import { NotificationPage } from '../pages/notification/notification';
 import { HomePage } from '../pages/home/home';
@@ -11,6 +12,12 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CustomerInfoComponent } from '../components/customer-info/customer-info';
+import { DeliveryInfoComponent } from '../components/delivery-info/delivery-info';
+import { AppToolbarComponent } from '../components/app-toolbar/app-toolbar';
+import { RegistryToolbarComponent } from '../components/registry-toolbar/registry-toolbar';
+import { ServiceRegistryComponent } from '../components/service-registry/service-registry';
+import { ServiceInfoComponent } from '../components/service-info/service-info';
 
 @NgModule({
   declarations: [
@@ -19,7 +26,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NotificationPage,
     HomePage,
     PersonalPage,
-    TabsPage
+    TabsPage,
+    CustomerInfoComponent,
+    DeliveryInfoComponent,
+    AppToolbarComponent,
+    RegistryToolbarComponent,
+    ServiceRegistryComponent,
+    ServiceInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +45,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NotificationPage,
     HomePage,
     PersonalPage,
+    CustomerInfoComponent,
     TabsPage
   ],
   providers: [
