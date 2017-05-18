@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Tabs } from 'ionic-angular';
 
 import { OrderPage } from '../order/order';
 import { NotificationPage } from '../notification/notification';
@@ -15,7 +16,18 @@ export class TabsPage {
   notificationTab = NotificationPage;
   personalTab = PersonalPage;
 
+  @ViewChild('myTabs') tabRef: Tabs;
+
   constructor() {
 
+  }
+
+  ionViewDidEnter() {
+    // this.tabRef.select(1);
+  }
+  
+  
+  public navigateNotification() {
+    this.tabRef.select(2);
   }
 }

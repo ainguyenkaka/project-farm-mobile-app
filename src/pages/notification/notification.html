@@ -1,17 +1,18 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Notification
-    </ion-title>
-  </ion-navbar>
+  <app-toolbar [title]="'Thông báo'"></app-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
+    <button ion-item (click)="clickItem('item')">
+    <ion-icon name="notifications" color="accent" item-left></ion-icon>
+    <h2>Xác nhận thành công</h2>
+    <p>Yêu cầu đặt rau của bạn đã được nhận</p>
+  </button>
+    <button ion-item>
+    <ion-icon name="notifications" item-left></ion-icon>
+    <h2>Xác nhận thành công</h2>
+    <p>Yêu cầu đặt rau của bạn đã được nhận</p>
+  </button>
   </ion-list>
 </ion-content>

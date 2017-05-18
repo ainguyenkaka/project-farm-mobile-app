@@ -1,11 +1,24 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Order
-    </ion-title>
-  </ion-navbar>
+  <app-toolbar [title]="'Đặt rau'"></app-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="choice" small>
+      <ion-segment-button value="productList">
+        Chọn rau
+      </ion-segment-button>
+      <ion-segment-button value="orderList">
+        Danh sách
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="choice">
+    <ion-list *ngSwitchCase="'productList'">
+      <product-list></product-list>
+    </ion-list>
+    <ion-list *ngSwitchCase="'orderList'">
+      <order-list></order-list>
+    </ion-list>
+  </div>
 </ion-content>

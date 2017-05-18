@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,Input} from '@angular/core';
 
 /**
  * Generated class for the AppToolbarComponent component.
@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 })
 export class AppToolbarComponent {
 
-  title: string;
+  @Input() title: string;
 
   constructor() {
     this.title = 'Hello World';

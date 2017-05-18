@@ -1,25 +1,21 @@
 import { Component } from '@angular/core';
 
 /**
- * Generated class for the ServiceInfoComponent component.
+ * Generated class for the ServiceVerificationComponent component.
  *
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
  */
 @Component({
-  selector: 'service-info',
-  templateUrl: 'service-info.html'
+  selector: 'service-verification',
+  templateUrl: 'service-verification.html'
 })
-export class ServiceInfoComponent {
+export class ServiceVerificationComponent {
 
   title: string;
-  choice: string;
-  beforeMonth: number;
 
   constructor() {
     this.title = 'Hello World';
-    this.choice = 'basic';
-    this.beforeMonth = 0;
   }
 
 }

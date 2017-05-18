@@ -1,11 +1,14 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Dialogs } from '@ionic-native/dialogs';
 import { MyApp } from './app.component';
 
 
 import { OrderPage } from '../pages/order/order';
+import { OrderDetailPage } from '../pages/order-detail/order-detail';
 import { NotificationPage } from '../pages/notification/notification';
+import { NotificationDetailPage } from '../pages/notification-detail/notification-detail';
 import { HomePage } from '../pages/home/home';
 import { PersonalPage } from "../pages/personal/personal";
 import { TabsPage } from '../pages/tabs/tabs';
@@ -15,9 +18,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CustomerInfoComponent } from '../components/customer-info/customer-info';
 import { DeliveryInfoComponent } from '../components/delivery-info/delivery-info';
 import { AppToolbarComponent } from '../components/app-toolbar/app-toolbar';
-import { RegistryToolbarComponent } from '../components/registry-toolbar/registry-toolbar';
 import { ServiceRegistryComponent } from '../components/service-registry/service-registry';
 import { ServiceInfoComponent } from '../components/service-info/service-info';
+import { ServiceVerificationComponent } from '../components/service-verification/service-verification';
+import { ProductListComponent } from '../components/product-list/product-list';
+import { OrderListComponent } from '../components/order-list/order-list';
 
 @NgModule({
   declarations: [
@@ -27,12 +32,16 @@ import { ServiceInfoComponent } from '../components/service-info/service-info';
     HomePage,
     PersonalPage,
     TabsPage,
+    NotificationDetailPage,
+    OrderDetailPage,
     CustomerInfoComponent,
     DeliveryInfoComponent,
     AppToolbarComponent,
-    RegistryToolbarComponent,
     ServiceRegistryComponent,
-    ServiceInfoComponent
+    ServiceInfoComponent,
+    ServiceVerificationComponent,
+    ProductListComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,11 +55,15 @@ import { ServiceInfoComponent } from '../components/service-info/service-info';
     HomePage,
     PersonalPage,
     CustomerInfoComponent,
-    TabsPage
+    TabsPage,
+    NotificationDetailPage,
+    OrderDetailPage,
+    ServiceRegistryComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Dialogs,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

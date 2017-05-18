@@ -6,9 +6,10 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'order.html'
 })
 export class OrderPage {
+  choice: string;
 
   constructor(public navCtrl: NavController) {
-
+      this.choice = 'productList';
   }
 
 }

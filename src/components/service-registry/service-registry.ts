@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { NavController } from 'ionic-angular';
+import { NotificationDetailPage } from '../../pages/notification-detail/notification-detail';
 /**
  * Generated class for the ServiceRegistryComponent component.
  *
@@ -13,9 +14,23 @@ import { Component } from '@angular/core';
 export class ServiceRegistryComponent {
 
   title: string;
+  choices: Array<string>;
+  choice: string;
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     this.title = 'Hello World';
+    this.choices = ["customInfo", "serviceInfo", "verification"];
+    this.choice = this.choices[0];
   }
 
+  clickNext(index) {
+    this.choice = this.choices[index + 1];
+  }
+
+  saveOrder(item) {
+    
+    this.navCtrl.push(NotificationDetailPage, {
+      item: item
+    });
+  }
 }

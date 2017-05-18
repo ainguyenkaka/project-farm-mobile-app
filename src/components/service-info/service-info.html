@@ -2,7 +2,7 @@
 <ion-list>
 
   <ion-item-divider color="light">
-    <ion-icon name="filing" item-left></ion-icon>
+    <ion-icon name="filing" color="dark" item-left></ion-icon>
     Gói dịch vụ
   </ion-item-divider>
   <ion-grid radio-group [(ngModel)]="choice">
@@ -29,7 +29,7 @@
 
     <ion-list *ngSwitchCase="'advance'">
       <ion-item-divider color="light">
-        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-icon name="calendar" color="dark" item-left></ion-icon>
         Ngày giao hàng
       </ion-item-divider>
       <ion-grid>
@@ -65,13 +65,16 @@
         </ion-row>
       </ion-grid>
       <ion-item-divider color="light">
-        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-icon name="calendar" color="dark" item-left></ion-icon>
         Thanh toán trước {{beforeMonth == 0 ? 1 : beforeMonth}} tháng
       </ion-item-divider>
       <ion-item>
-        <ion-range min="0" max="12" step="3" snaps="true" [(ngModel)]="beforeMonth"></ion-range>
+
+        <ion-range min="0" max="12" step="3" snaps="true" [(ngModel)]="beforeMonth">
+          <ion-label range-left>1</ion-label>
+          <ion-label range-right>12</ion-label>
+        </ion-range>
       </ion-item>
     </ion-list>
   </div>
-
 </ion-list>
