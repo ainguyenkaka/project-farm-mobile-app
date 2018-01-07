@@ -10,44 +10,33 @@
   <ion-list no-lines>
     <ion-item>
       <span>Mã yêu cầu: </span>
-      <b>#219289120</b>
+      <b>{{order.code}}</b>
     </ion-item>
     <ion-item>
       <span>Ngày giao: </span>
-      <b>15/12/2017</b>
+      <b>{{order.createdDate | date : 'dd/MM/yyyy'}}</b>
     </ion-item>
     <ion-item>
       <span>Trạng thái: </span>
-      <b>Chờ giao hàng</b>
+      <b>{{order.status == 0 ? 'Chờ giao hàng' : 'Đã giao hàng'}}</b>
     </ion-item>
     <ion-item-divider color="light">
       <ion-icon name="information-circle" color="dark" item-left></ion-icon>
       Thông tin giao hàng
     </ion-item-divider>
-    <ion-item>
+    <!--<ion-item *ngFor="let product of orderProducts">
       <ion-thumbnail item-left>
-        <img src="assets/img/default-product.jpg">
+        <img [src]="product.imageUrl">
       </ion-thumbnail>
       <ion-label>
-        <h2>Rau mồng tơi</h2>
+        <h2>{{product.name}}</h2>
         <p>
-          <span>10 kg</span>
+          <span>{{product.kilogram}} kg</span>
         </p>
       </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-left>
-        <img src="assets/img/default-product.jpg">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>Rau mồng tơi</h2>
-        <p>
-          <span>10 kg</span>
-        </p>
-      </ion-label>
-    </ion-item>
-    <ion-item text-center>
+    </ion-item>-->
+    <!--<ion-item text-center [hidden]="order.status == 1">
         <button ion-button color="accent" round  padding (click)="cancelOrder()">Huỷ yêu cầu</button>
-      </ion-item>
+      </ion-item>-->
   </ion-list>
 </ion-content>

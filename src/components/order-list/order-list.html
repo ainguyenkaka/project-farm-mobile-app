@@ -1,36 +1,19 @@
 <ion-list>
-  <button ion-item (click)="clickItem('item')">
+  <button ion-item *ngFor="let order of orders" (click)="clickItem(order)">
     <ion-label>
       <p>
         <span>Mã giao hàng: </span>
-        <b>$213121</b>
+        <b>{{order.code}}</b>
       </p>
       <p>
         <span>Ngày giao hàng: </span>
-        <b>Thứ 2, 21/12/2017</b>
+         <b>{{order.createdDate | date : 'dd/MM/yyyy'}}</b>
       </p>
       <p>
         <span>Tổng loại rau: </span>
-        <b>03 loại - 30kg</b>
+        <b>{{order.totalProducts}}</b>
       </p>
     </ion-label>
-    <ion-icon item-right class="m-large-icon" color="primary" name="checkmark-circle"></ion-icon>
-  </button>
-  <button ion-item (click)="clickItem('item')">
-    <ion-label>
-      <p>
-        <span>Mã giao hàng: </span>
-        <b>$213121</b>
-      </p>
-      <p>
-        <span>Ngày giao hàng: </span>
-        <b>Thứ 2, 21/12/2017</b>
-      </p>
-      <p>
-        <span>Tổng loại rau: </span>
-        <b>03 loại - 30kg</b>
-      </p>
-    </ion-label>
-    <ion-icon item-right class="m-large-icon" color="warning" name="refresh-circle"></ion-icon>
+    <ion-icon item-right class="m-large-icon" color="{{order.status == 1 ? 'primary' : 'warning'}}" name="checkmark-circle"></ion-icon>
   </button>
 </ion-list>

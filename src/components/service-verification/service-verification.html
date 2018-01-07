@@ -2,38 +2,43 @@
 <ion-list>
   <ion-item>
     <span>Người nhận: </span>
-    <b>Phạm Thị Lương</b>
+    <b>{{customInfo.name}}</b>
   </ion-item>
    <ion-item>
     <span>Số điện thoại: </span>
-    <b>0123456789</b>
+    <b>{{customInfo.phone}}</b>
   </ion-item>
   <ion-item>
     <span>Địa chỉ: </span>
-    <b text-wrap>Tầng 44 - Keangnam - Mỗ Trí Nam - Từ Liêm</b>
+    <!--<b text-wrap>{{customInfo.number}} - {{customInfo.street}} - {{customInfo.town}} - {{customInfo.ward}}</b>-->
+    <b text-wrap>{{customInfo.street}}</b>
   </ion-item>
   <ion-item>
     <span>Gói dịch vụ: </span>
-    <b>Nâng cao</b>
+    <b>{{serviceInfo.category == 'basic' ? 'Cơ bản' : 'Nâng cao'}}</b>
   </ion-item>
   <ion-item>
     <span>Giao hàng vào: </span>
-    <b text-wrap>Thứ 2 và thứ 6 hàng tuần</b>
+    <b text-wrap>Thứ <span *ngFor="let day of serviceInfo.days">{{day}} </span></b>
   </ion-item>
   <ion-item>
     <span>Thanh toán trước: </span>
-    <b>3 tháng lần</b>
+    <b>{{serviceInfo.beforeMonth}} tháng 1 lần</b>
   </ion-item>
   <ion-item>
     <span>Bắt đầu giao hàng: </span>
-    <b>01/05/2017</b>
+    <b>{{serviceInfo.startDate | date : 'dd/MM/yyyy'}}</b>
   </ion-item>
   <ion-item>
     <span>Kết thúc giao hàng: </span>
-    <b>01/05/2017</b>
+    <b>{{serviceInfo.endDate | date : 'dd/MM/yyyy'}}</b>
   </ion-item>
   <ion-item>
-    <span>Khối lượng giao mỗi lần: </span>
-    <b>3.0 kg</b>
+    <span>Khối lượng mổi lần giao: </span>
+    <b>{{caculateKilogramPerTime() | number : '1.1-2'}} kg</b>
+  </ion-item>
+  <ion-item text-right>
+    <span>Thành tiền: </span>
+    <b>{{caculateTotalPrice() | currency : 'VND':false: '4.0-0'}}</b>
   </ion-item>
 </ion-list>

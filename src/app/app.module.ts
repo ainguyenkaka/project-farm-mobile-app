@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule }    from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Dialogs } from '@ionic-native/dialogs';
 import { MyApp } from './app.component';
@@ -23,6 +24,18 @@ import { ServiceInfoComponent } from '../components/service-info/service-info';
 import { ServiceVerificationComponent } from '../components/service-verification/service-verification';
 import { ProductListComponent } from '../components/product-list/product-list';
 import { OrderListComponent } from '../components/order-list/order-list';
+import { ProductServiceProvider } from '../providers/product-service/product-service';
+import { OrderServiceProvider } from '../providers/order-service/order-service';
+import { PackageServiceProvider } from '../providers/package-service/package-service';
+import { CustominfoServiceProvider } from '../providers/custominfo-service/custominfo-service';
+import { NotificationServiceProvider } from '../providers/notification-service/notification-service';
+import { ConverterServiceProvider } from '../providers/converter-service/converter-service';
+import { LocationServiceProvider } from '../providers/location-service/location-service';
+import { FarmServiceProvider } from '../providers/farm-service/farm-service';
+import { AppConstantsProvider } from '../providers/app-constants/app-constants';
+import { UserServiceProvider } from '../providers/user-service/user-service';
+import { HttpServiceProvider } from '../providers/http-service/http-service';
+import { StorageServiceProvider } from '../providers/storage-service/storage-service';
 
 @NgModule({
   declarations: [
@@ -45,6 +58,7 @@ import { OrderListComponent } from '../components/order-list/order-list';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -64,7 +78,19 @@ import { OrderListComponent } from '../components/order-list/order-list';
     StatusBar,
     SplashScreen,
     Dialogs,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ProductServiceProvider,
+    OrderServiceProvider,
+    PackageServiceProvider,
+    CustominfoServiceProvider,
+    NotificationServiceProvider,
+    ConverterServiceProvider,
+    LocationServiceProvider,
+    FarmServiceProvider,
+    AppConstantsProvider,
+    UserServiceProvider,
+    HttpServiceProvider,
+    StorageServiceProvider
   ]
 })
 export class AppModule {}

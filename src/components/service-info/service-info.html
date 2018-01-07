@@ -5,12 +5,12 @@
     <ion-icon name="filing" color="dark" item-left></ion-icon>
     Gói dịch vụ
   </ion-item-divider>
-  <ion-grid radio-group [(ngModel)]="choice">
+  <ion-grid radio-group [(ngModel)]="serviceInfo.category">
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label>Cơ bản</ion-label>
-          <ion-radio value="basic"></ion-radio>
+          <ion-radio value="basic" (click)="chooseBasic()"></ion-radio>
         </ion-item>
       </ion-col>
       <ion-col>
@@ -22,59 +22,115 @@
     </ion-row>
   </ion-grid>
 
-  <div [ngSwitch]="choice">
+  <div [ngSwitch]="serviceInfo.category">
+    <ion-item-divider color="light">
+      <ion-icon name="calendar" color="dark" item-left></ion-icon>
+      Ngày giao hàng
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>Bắt đầu giao hàng</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [min]="getCurrentDate()" [(ngModel)]="serviceInfo.startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Kết thúc giao hàng</ion-label>
+      <ion-label text-right>
+        <span>{{caculateEndDate(serviceInfo.beforeMonth,serviceInfo.startDate) | date: 'dd/MM/yyyy'}}</span>
+      </ion-label>
+    </ion-item>
     <ion-list *ngSwitchCase="'basic'" checked="true">
-
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'advance'">
-      <ion-item-divider color="light">
-        <ion-icon name="calendar" color="dark" item-left></ion-icon>
-        Ngày giao hàng
-      </ion-item-divider>
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-item>
               <ion-label>Thứ hai</ion-label>
-              <ion-checkbox checked="true"></ion-checkbox>
+              <ion-checkbox [checked]="dayExisted(2)" (click)="chooseOneDay(2)"></ion-checkbox>
             </ion-item>
             <ion-item>
               <ion-label>Thứ ba</ion-label>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox [checked]="dayExisted(3)" (click)="chooseOneDay(3)"></ion-checkbox>
             </ion-item>
             <ion-item>
               <ion-label>Thứ tư</ion-label>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox [checked]="dayExisted(4)" (click)="chooseOneDay(4)"></ion-checkbox>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
               <ion-label>Thứ năm</ion-label>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox [checked]="dayExisted(5)" (click)="chooseOneDay(5)"></ion-checkbox>
             </ion-item>
             <ion-item>
               <ion-label>Thứ sáu</ion-label>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox [checked]="dayExisted(6)" (click)="chooseOneDay(6)"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    <ion-list *ngSwitchCase="'advance'">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Thứ hai</ion-label>
+              <ion-checkbox [checked]="dayExisted(2)" (click)="chooseDay(2)"></ion-checkbox>
             </ion-item>
             <ion-item>
-              <ion-label>Thứ bảy</ion-label>
-              <ion-checkbox></ion-checkbox>
+              <ion-label>Thứ ba</ion-label>
+              <ion-checkbox [checked]="dayExisted(3)" (click)="chooseDay(3)"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Thứ tư</ion-label>
+              <ion-checkbox [checked]="dayExisted(4)" (click)="chooseDay(4)"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Thứ năm</ion-label>
+              <ion-checkbox [checked]="dayExisted(5)" (click)="chooseDay(5)"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Thứ sáu</ion-label>
+              <ion-checkbox [checked]="dayExisted(6)" (click)="chooseDay(6)"></ion-checkbox>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
       <ion-item-divider color="light">
         <ion-icon name="calendar" color="dark" item-left></ion-icon>
-        Thanh toán trước {{beforeMonth == 0 ? 1 : beforeMonth}} tháng
+        Thanh toán trước {{serviceInfo.beforeMonth == 0 ? 1 : serviceInfo.beforeMonth}} tháng
       </ion-item-divider>
       <ion-item>
-
-        <ion-range min="0" max="12" step="3" snaps="true" [(ngModel)]="beforeMonth">
-          <ion-label range-left>1</ion-label>
-          <ion-label range-right>12</ion-label>
-        </ion-range>
+        <ion-label>Chọn số tháng</ion-label>
+        <ion-select [(ngModel)]="serviceInfo.beforeMonth">
+          <ion-option value="1">1 tháng</ion-option>
+          <ion-option value="3">3 tháng</ion-option>
+          <ion-option value="6">6 tháng</ion-option>
+          <ion-option value="9">9 tháng</ion-option>
+          <ion-option value="12">12 tháng</ion-option>
+        </ion-select>
       </ion-item>
+      <ion-item-divider color="light">
+        <ion-icon name="checkmark-circle" color="dark" item-left></ion-icon>
+        Hình thức đặt rau
+      </ion-item-divider>
+      <ion-grid radio-group [(ngModel)]="serviceInfo.orderType">
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Tự chọn</ion-label>
+              <ion-radio value="custom"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Ngẫu nhiên</ion-label>
+              <ion-radio value="random"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-list>
+
   </div>
 </ion-list>

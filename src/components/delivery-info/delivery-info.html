@@ -4,20 +4,39 @@
     <ion-icon name="navigate" color="dark" item-left></ion-icon>
     Địa chỉ giao hàng
   </ion-item-divider>
-  <ion-item>
-    <ion-label floating>Quận</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Phường/Xã</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Tên đường</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Số nhà</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+  <div [hidden]="!isBasic()">
+    <ion-item>
+      <ion-label>Chọn địa điểm</ion-label>
+      <ion-select [(ngModel)]="customInfo.street">
+        <ion-option *ngFor="let item of basicAddresses" [value]="item">{{item}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div [hidden]="isBasic()">
+    <ion-item>
+      <ion-label>Chọn địa điểm</ion-label>
+      <ion-select [(ngModel)]="customInfo.street">
+        <ion-option *ngFor="let item of basicAddresses" [value]="item">{{item}}</ion-option>
+        <ion-option [value]="''">Khác</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div [hidden]="isFreeLocation() || isBasic()">
+    <!--<ion-item>
+      <ion-label floating>Quận</ion-label>
+      <ion-input type="text" [(ngModel)]="customInfo.ward"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phường/Xã</ion-label>
+      <ion-input type="text" [(ngModel)]="customInfo.town"></ion-input>
+    </ion-item>-->
+    <ion-item>
+      <ion-label floating>Địa chỉ</ion-label>
+      <ion-input type="text" [(ngModel)]="customInfo.street"></ion-input>
+    </ion-item>
+    <!--<ion-item>
+      <ion-label>Số nhà</ion-label>
+      <ion-input type="text" [(ngModel)]="customInfo.houseNumber"></ion-input>
+    </ion-item>-->
+  </div>
 </ion-list>

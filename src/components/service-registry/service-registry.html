@@ -9,11 +9,11 @@
 <ion-content>
   <div>
     <ion-segment [(ngModel)]="choice" small>
-      <ion-segment-button value="customInfo">
-        Khách hàng
-      </ion-segment-button>
       <ion-segment-button value="serviceInfo">
         Dịch vụ
+      </ion-segment-button>
+      <ion-segment-button value="customInfo">
+        Khách hàng
       </ion-segment-button>
       <ion-segment-button value="verification">
         Xác nhận
@@ -21,24 +21,23 @@
     </ion-segment>
   </div>
   <div [ngSwitch]="choice">
-    <ion-list *ngSwitchCase="choices[0]">
-      <customer-info></customer-info>
-      <delivery-info></delivery-info>
+    <ion-list *ngSwitchCase="'serviceInfo'">
+      <service-info [serviceInfo]="serviceInfo"></service-info>
       <ion-item text-center>
         <button ion-button color="accent" round padding (click)="clickNext(0)">Tiếp theo</button>
       </ion-item>
     </ion-list>
-
-    <ion-list *ngSwitchCase="choices[1]">
-      <service-info></service-info>
+    <ion-list *ngSwitchCase="'customInfo'">
+      <customer-info [customInfo]="customInfo"></customer-info>
+      <delivery-info [customInfo]="customInfo" [serviceInfo]="serviceInfo"></delivery-info>
       <ion-item text-center>
         <button ion-button color="accent" round padding (click)="clickNext(1)">Tiếp theo</button>
       </ion-item>
     </ion-list>
-    <ion-list *ngSwitchCase="choices[2]">
-      <service-verification></service-verification>
+    <ion-list *ngSwitchCase="'verification'">
+      <service-verification [customInfo]="customInfo" [serviceInfo]="serviceInfo"></service-verification>
       <ion-item text-center>
-        <button ion-button color="accent" round padding (click)="saveOrder('item')">Xác nhận</button>
+        <button ion-button color="accent" round padding (click)="saveServiceVerification()">Xác nhận</button>
       </ion-item>
     </ion-list>
   </div>

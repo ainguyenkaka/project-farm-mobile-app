@@ -3,18 +3,63 @@
 </ion-header>
 
 <ion-content>
-  <customer-info></customer-info>
+  <ion-list>
+    <ion-item color="light">
+      <ion-icon name="contact" color="dark" item-left></ion-icon>
+      Thông tin người đặt
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Người đăng ký</ion-label>
+      <ion-input type="text" [(ngModel)]="customInfo.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="customInfo.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Số điện thoại</ion-label>
+      <ion-input type="tel" [(ngModel)]="customInfo.phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Thuộc đơn vị</ion-label>
+      <ion-input type="text" [(ngModel)]="customInfo.organization"></ion-input>
+    </ion-item>
+  </ion-list>
+
   <ion-item text-center>
-    <button ion-button color="accent" round padding>Thay đổi</button>
+    <button ion-button color="accent" round padding (click)="saveCustomInfo()">Thay đổi</button>
   </ion-item>
 
-  <delivery-info></delivery-info>
-  <ion-item text-center>
-    <button ion-button color="accent" round padding>Thay đổi</button>
+  <ion-item>
+    <span>Bạn đã đặt số lần giao: </span>
+    <b>{{calculateTotalTimes()}} lần</b>
   </ion-item>
-
-  <service-info></service-info>
-  <ion-item text-center>
-    <button ion-button color="accent" round padding>Thay đổi</button>
+  <ion-item>
+    <ion-label>Bạn chọn gói: </ion-label>
+    <ion-label text-right>
+      <span>{{serviceInfo.category == 'basic' ? 'Cơ bản' : 'Nâng cao'}}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Hình thức đặt: </ion-label>
+    <ion-label text-right>
+      <span>{{serviceInfo.orderType == 'random' ? 'Ngẫu nhiên' : 'Tự chọn'}}</span>
+    </ion-label>
+  </ion-item>
+  <!--<ion-item>
+    <span>Bạn còn lại số lần giao: </span>
+    <b></b>
+  </ion-item>-->
+  <ion-item>
+    <ion-label>Bắt đầu giao hàng: </ion-label>
+    <ion-label text-right>
+      <span>{{serviceInfo.startDate | date: 'dd/MM/yyyy'}}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Kết thúc giao hàng: </ion-label>
+    <ion-label text-right>
+      <span>{{serviceInfo.endDate | date: 'dd/MM/yyyy'}}</span>
+    </ion-label>
   </ion-item>
 </ion-content>

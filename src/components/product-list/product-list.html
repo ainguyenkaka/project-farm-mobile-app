@@ -1,40 +1,28 @@
 <!-- Generated template for the ProductListComponent component -->
 <ion-list>
-  <ion-item>
+  <ion-item *ngFor="let product of products">
     <ion-thumbnail item-left>
-      <img src="assets/img/default-product.jpg">
+      <img [src]="product.imageUrl">
     </ion-thumbnail>
     <ion-label>
-      <h2>Rau mồng tơi</h2>
+      <h2>{{product.name}}</h2>
       <p>
-        <button ion-button color="accent" clear round icon-only>
+        <button ion-button color="accent" clear round icon-only (click)="decreaseKilogram(product)">
             <ion-icon name="remove-circle" ></ion-icon>
          </button>
-        <span>10 kg</span>
-        <button ion-button icon-only clear round>
+        <span>{{product.kilogram | number : '1.1-2'}} kg</span>
+        <button ion-button icon-only clear round icon-only (click)="increaseKilogram(product)">
         <ion-icon name="add-circle"></ion-icon>
         </button>
       </p>
     </ion-label>
-    <ion-toggle class="m-toggle" color="dark" checked="true" item-right></ion-toggle>
+    <ion-toggle class="m-toggle" color="dark" [(ngModel)]="product.chosen" item-right (click)="chooseProduct(product)"></ion-toggle>
   </ion-item>
-
-  <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/default-product.jpg">
-    </ion-thumbnail>
-    <ion-label>
-      <span>Rau mồng tơi</span>
-      <p>
-        <button ion-button color="accent" clear round icon-only>
-          <ion-icon name="remove-circle" ></ion-icon>
-        </button>
-        <span>10 kg</span>
-        <button ion-button icon-only clear round>
-          <ion-icon name="add-circle"></ion-icon>
-        </button>
-      </p>
-    </ion-label>
-    <ion-toggle class="m-toggle" color="dark" item-right></ion-toggle>
+  <ion-item text-right>
+    <span>Tổng: </span>
+    <b>{{totalKilogram | number : '1.1-2'}}/{{getMaxKilogram() | number : '1.1-2'}} kg</b>
+  </ion-item>
+  <ion-item text-center>
+    <button ion-button color="accent" round padding (click)="saveProducts()" [disabled]="!isSaved">Hoàn tất</button>
   </ion-item>
 </ion-list>

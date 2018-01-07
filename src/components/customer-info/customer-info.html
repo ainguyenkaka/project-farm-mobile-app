@@ -5,22 +5,22 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Người đăng ký</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="customInfo.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" [(ngModel)]="customInfo.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Số điện thoại</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="tel" [(ngModel)]="customInfo.phone"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Thuộc đơn vị</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="customInfo.organization"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Số người trong gia đình</ion-label>
-      <ion-input type="number"></ion-input>
+      <ion-label>Số người trong gia đình</ion-label>
+      <ion-input type="number" [(ngModel)]="customInfo.members" min="1"></ion-input>
     </ion-item>
 </ion-list>

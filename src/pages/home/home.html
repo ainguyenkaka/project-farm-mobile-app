@@ -1,32 +1,41 @@
+<ion-header>
+  <div class="m-home-header">
+    <img [src]="farm.imageUrl" />
+    <div class="card-title">{{farm.title}}</div>
+  </div>
+</ion-header>
 <ion-content>
   <div>
-    <div class="m-home-header">
-      <img src="assets/img/home.jpg" />
-      <div class="card-title">RAU SẠCH HOÀ LẠC</div>
-    </div>
+
     <div>
       <ion-list no-lines>
         <ion-item>
           <span>Diện tích: </span>
-          <b>250m</b>
+          <b>{{farm.acreage}} m2</b>
         </ion-item>
         <ion-item>Phương pháp trồng:
           <ul>
-            <li>Thổ canh</li>
-            <li>Thuỷ canh</li>
+            <li *ngFor="let method of farm.methods">{{method}}</li>
           </ul>
         </ion-item>
-       
         <ion-item>
-          <span>Email: </span>
-          <b text-wrap>luongluongpt4@viettell.com.vn</b></ion-item>
-        <ion-item>
-          <span>Điện thoại: </span>
-          <b>0978.999.999</b>
+          <span>Chi tiết liên hệ :</span>
+          <ul>
+            <li>
+              <span>Email: </span>
+              <b text-wrap>{{farm.email}}</b>
+            </li>
+            <li>
+              <span>Điện thoại: </span>
+              <b>{{farm.phone}}</b>
+            </li>
+            <li>
+              <b text-wrap>{{farm.contact}}</b>
+            </li>
+          </ul>
         </ion-item>
-         <ion-item>
-          <span>Liên hệ: </span>
-          <b text-wrap>Phạm Thị Lương - Trung Tâm CNTT Viettel 3</b>
+        <ion-item>
+          <span text-wrap>{{farm.description}}</span>
         </ion-item>
       </ion-list>
     </div>

@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
-
-/**
- * Generated class for the DeliveryInfoComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
+import { Component, Input } from '@angular/core';
+import { LocationServiceProvider } from "../../providers/location-service/location-service";
 @Component({
   selector: 'delivery-info',
   templateUrl: 'delivery-info.html'
 })
 export class DeliveryInfoComponent {
 
-  text: string;
+  @Input() customInfo: any;
+  @Input() serviceInfo: any;
 
-  constructor() {
-    this.text = 'Hello World';
+  basicAddresses: Array<string>;
+
+  constructor(private locationService: LocationServiceProvider) {
+    this.loadData();
+  }
+
+  loadData() {
+    this.basicAddresses = this.locationService.getBasicLocations();
+  }
+
+  isFreeLocation() {
+    return this.locationService.isFreeLocation(this.customInfo.street);
+  }
+  isBasic() {
+    return this.serviceInfo.category == 'basic';
   }
 
 }

@@ -4,15 +4,10 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item (click)="clickItem('item')">
+    <button ion-item *ngFor="let item of notifications" (click)="clickItem(item)">
     <ion-icon name="notifications" color="accent" item-left></ion-icon>
-    <h2>Xác nhận thành công</h2>
-    <p>Yêu cầu đặt rau của bạn đã được nhận</p>
-  </button>
-    <button ion-item>
-    <ion-icon name="notifications" item-left></ion-icon>
-    <h2>Xác nhận thành công</h2>
-    <p>Yêu cầu đặt rau của bạn đã được nhận</p>
+    <h2>{{item.title}}</h2>
+    <p>{{item.message}}</p>
   </button>
   </ion-list>
 </ion-content>
